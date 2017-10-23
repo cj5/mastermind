@@ -1,0 +1,13 @@
+
+WORK LOG
+---------------
+
+<!-- 1. randomly generate a code to break -->
+
+2. only show submit button when all 4 fields have a guess
+
+3. be able to submit a guess on active row
+
+4. when guess submitted, move active class to next row
+
+5. return codemaker peg hints based on submitted guess
