@@ -4,10 +4,12 @@ WORK LOG
 
 <!-- 1. randomly generate a code to break -->
 
-2. only show submit button when all 4 fields have a guess
+<!-- 2. only show submit button when all 4 spots have a guess -->
 
-3. be able to submit a guess on active row
+<!-- 3. be able to submit a guess on active row -->
 
-4. when guess submitted, move active class to next row
+4. click submit -> return codemaker peg hints based on submitted guess
 
-5. return codemaker peg hints based on submitted guess
+5. click submit -> move active class to next row
+
+6. When peg hints are all black, game over - show congrats msg
