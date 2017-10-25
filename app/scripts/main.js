@@ -50,6 +50,7 @@ $(document).ready(function() {
     if (bgColor) {
       $(this).addClass('guess-made');
     } 
+    showSubmit(); 
   });
 
   function makeCode() {
@@ -59,69 +60,78 @@ $(document).ready(function() {
     }
     return codeArray;
   }
-  let codeToBreak = makeCode();
-  console.log('Code to break: ', codeToBreak);
+  let codeArray = makeCode();
+  console.log('Code to break: ', codeArray);
   
   function showSubmit() {
-        if ($('.row.active .cdBkr-spot-1').hasClass('guess-made')
-        && $('.row.active .cdBkr-spot-2').hasClass('guess-made')
-        && $('.row.active .cdBkr-spot-3').hasClass('guess-made')
-        && $('.row.active .cdBkr-spot-4').hasClass('guess-made')) {      
+    if ($('.row.active .cdBkr-spot-1').hasClass('guess-made')
+    && $('.row.active .cdBkr-spot-2').hasClass('guess-made')
+    && $('.row.active .cdBkr-spot-3').hasClass('guess-made')
+    && $('.row.active .cdBkr-spot-4').hasClass('guess-made')) {      
       $('#submit').addClass('show');
     }
   }
-  $('.row.active .cdBkr-spot').click(function() {
-    showSubmit();
-    
-    color1 = 0;
-    color2 = 1;
-    color3 = 2;
-    color4 = 3;
-    color5 = 4;
-    color6 = 5; 
-  })
 
   let guessArray = [];
   
   $('#submit').click(function() {
-    
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === 'rgb(232, 44, 12)') { guessArray.push(color1); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === 'rgb(39, 57, 232)') { guessArray.push(color2); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === 'rgb(255, 255, 255)') { guessArray.push(color3); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === 'rgb(51, 51, 51)') { guessArray.push(color4); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === 'rgb(57, 176, 80)') { guessArray.push(color5); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === 'rgb(255, 241, 69)') { guessArray.push(color6); }
 
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === 'rgb(232, 44, 12)') { guessArray.push(color1); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === 'rgb(39, 57, 232)') { guessArray.push(color2); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === 'rgb(255, 255, 255)') { guessArray.push(color3); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === 'rgb(51, 51, 51)') { guessArray.push(color4); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === 'rgb(57, 176, 80)') { guessArray.push(color5); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === 'rgb(255, 241, 69)') { guessArray.push(color6); }
+    if ($('.row.active .cdBkr-spot-1').css('background-color') === color1) { guessArray.push(0); }
+    if ($('.row.active .cdBkr-spot-1').css('background-color') === color2) { guessArray.push(1); }
+    if ($('.row.active .cdBkr-spot-1').css('background-color') === color3) { guessArray.push(2); }
+    if ($('.row.active .cdBkr-spot-1').css('background-color') === color4) { guessArray.push(3); }
+    if ($('.row.active .cdBkr-spot-1').css('background-color') === color5) { guessArray.push(4); }
+    if ($('.row.active .cdBkr-spot-1').css('background-color') === color6) { guessArray.push(5); }
 
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === 'rgb(232, 44, 12)') { guessArray.push(color1); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === 'rgb(39, 57, 232)') { guessArray.push(color2); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === 'rgb(255, 255, 255)') { guessArray.push(color3); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === 'rgb(51, 51, 51)') { guessArray.push(color4); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === 'rgb(57, 176, 80)') { guessArray.push(color5); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === 'rgb(255, 241, 69)') { guessArray.push(color6); }
+    if ($('.row.active .cdBkr-spot-2').css('background-color') === color1) { guessArray.push(0); }
+    if ($('.row.active .cdBkr-spot-2').css('background-color') === color2) { guessArray.push(1); }
+    if ($('.row.active .cdBkr-spot-2').css('background-color') === color3) { guessArray.push(2); }
+    if ($('.row.active .cdBkr-spot-2').css('background-color') === color4) { guessArray.push(3); }
+    if ($('.row.active .cdBkr-spot-2').css('background-color') === color5) { guessArray.push(4); }
+    if ($('.row.active .cdBkr-spot-2').css('background-color') === color6) { guessArray.push(5); }
 
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === 'rgb(232, 44, 12)') { guessArray.push(color1); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === 'rgb(39, 57, 232)') { guessArray.push(color2); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === 'rgb(255, 255, 255)') { guessArray.push(color3); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === 'rgb(51, 51, 51)') { guessArray.push(color4); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === 'rgb(57, 176, 80)') { guessArray.push(color5); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === 'rgb(255, 241, 69)') { guessArray.push(color6); }
+    if ($('.row.active .cdBkr-spot-3').css('background-color') === color1) { guessArray.push(0); }
+    if ($('.row.active .cdBkr-spot-3').css('background-color') === color2) { guessArray.push(1); }
+    if ($('.row.active .cdBkr-spot-3').css('background-color') === color3) { guessArray.push(2); }
+    if ($('.row.active .cdBkr-spot-3').css('background-color') === color4) { guessArray.push(3); }
+    if ($('.row.active .cdBkr-spot-3').css('background-color') === color5) { guessArray.push(4); }
+    if ($('.row.active .cdBkr-spot-3').css('background-color') === color6) { guessArray.push(5); }
+
+    if ($('.row.active .cdBkr-spot-4').css('background-color') === color1) { guessArray.push(0); }
+    if ($('.row.active .cdBkr-spot-4').css('background-color') === color2) { guessArray.push(1); }
+    if ($('.row.active .cdBkr-spot-4').css('background-color') === color3) { guessArray.push(2); }
+    if ($('.row.active .cdBkr-spot-4').css('background-color') === color4) { guessArray.push(3); }
+    if ($('.row.active .cdBkr-spot-4').css('background-color') === color5) { guessArray.push(4); }
+    if ($('.row.active .cdBkr-spot-4').css('background-color') === color6) { guessArray.push(5); }
     
     console.log('guessArray: ', guessArray);
-    console.log('codeArray: ', codeToBreak);
+    console.log('codeArray: ', codeArray);
 
-    $('#submit').removeClass('show');
+        $('#submit').removeClass('show'); 
+        
+    for (let i = 0; i < guessArray.length; i++) {      
+      console.log('guessArray[i]: ', guessArray[i]);
+      console.log('codeArray[i]: ', codeArray[i]);
+      if (guessArray[i] === codeArray[i]) {
+        $(`.row.active .cdMkr-spot-${i + 1}`).css('background-color', color4);
+        guessArray[i] = -1; console.log('guessArray[i]Correct: ', guessArray[i]);
+        codeArray[i] = -2; console.log('codeArray[i]Correct: ', codeArray[i]);
+      }
+      // for (let j = 0 < codeArray.length; j++) {
+              
+      // }
+    }
+
     guessArray = [];
 
-    for (let i = 0; i < 10; i++) {
+    // if ($('#row-1.row').hasClass('active')) {
+    //   $('#row-1.row').removeClass('active');
+    //   $('#row-2.row').addClass('active');
+    // }
 
-    }
+    // for (let i = 0; i < 10; i++) {
+
+    // }
   })
 
 
