@@ -2,14 +2,28 @@
 WORK LOG
 ---------------
 
-<!-- 1. randomly generate a code to break -->
+✔ 1. randomly generate a code to break
 
-<!-- 2. only show submit button when all 4 spots have a guess -->
+✔ 2. only show submit button when all 4 spots have a guess
 
-<!-- 3. be able to submit a guess on active row -->
+✔ 3. be able to submit a guess on active row
 
-4. click submit -> return codemaker peg hints based on submitted guess
+✔ 4. click submit -> return codemaker peg hints based on submitted guess
 
-5. click submit -> move active class to next row
+✔ 5. click submit -> move active class to next row
+ 
+✔ 6. When peg hints are all black, game over -> show winner msg/new game
 
-6. When peg hints are all black, game over - show congrats msg
+✔ 7. If after 10 guesses code isn't right -> show loser msg/new game
+
+✔ 8. Create rules page
+
+✔ 9. Number the rows
+
+10. Make responsive
+
+11. Add keyboard controls
+
+12. REFACTOR!!!
+
+13. Add difficulty settings -> hard = 8 rows, easy = 12 rows
