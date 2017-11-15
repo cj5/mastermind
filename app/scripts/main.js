@@ -47,7 +47,7 @@ $(document).ready(function() {
     return codeArray;
   }
   let codeArray = makeCode();
-  // let codeArray = [1,0,4,2];
+  // let codeArray = [2,2,1,2];
   console.log('❱❱ Code to break: ', codeArray);
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -172,19 +172,24 @@ $(document).ready(function() {
 
     // White Key Check
     for (let i = 0; i < 4; i++) {
-      console.log('I-loop white ' + `${i}`);
+      console.log('I-LOOP WHITE ' + i);
       for (let j = 0; j < 4; j++) {
-        console.log('jloop white ' + `${j}`);
+        console.log('jloop white ' + j);
         // console.log('i: ', i);
         // console.log('j: ', j);
-        if ((codeArray[i] === guessArray[j]) && (i !== j)) {
-          if (i == j) { console.log('%%% i = j %%%'); }
+        // if (i !== j) { 
+        //   console.log('%%% i !== j %%%'); 
+        // }
+        if ((codeArray[i] === guessArray[j]) && (i !== j)) {          
           console.log('white grade check 1: ', gradeArray);
           gradeArray[i] = 2;
-          codeArray[i] = -2;
+          guessArray[j] = -2;
           console.log('codeArray: ', codeArray);
-          console.log('guessArray: ', guessArray);         
+          console.log('guessArray: ', guessArray);
+          console.log('gradeArray: ', gradeArray);        
           console.log('white grade check 2: ', gradeArray);
+        } else if (codeArray[i] === guessArray[j]) {
+          gradeArray[i] = 0;
         }
       }
     }
