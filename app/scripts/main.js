@@ -39,15 +39,15 @@ $(document).ready(function() {
   $('.rules-wrapper').css('height', vpHeight - 220);
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  const makeCode = () => {
-    let codeArray = [];
-    for (let i = 0; i < 4; i++) {
-      codeArray.push(Math.floor(Math.random() * 6));
-    }
-    return codeArray;
-  }
-  let codeArray = makeCode();
-  // let codeArray = [2,2,1,2];
+  // const makeCode = () => {
+  //   let codeArray = [];
+  //   for (let i = 0; i < 4; i++) {
+  //     codeArray.push(Math.floor(Math.random() * 6));
+  //   }
+  //   return codeArray;
+  // }
+  // let codeArray = makeCode();
+  let codeArray = [2,2,1,2];
   console.log('❱❱ Code to break: ', codeArray);
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -130,18 +130,19 @@ $(document).ready(function() {
         console.log('black grade check 1: ', gradeArray);
         gradeArray[i] = 1;
         codeArray[i] = -1;
+        guessArray[i] = -2;
         console.log('black grade check 2: ', gradeArray);
         console.log('codeArray: ', codeArray);
+        console.log('guessArray: ', guessArray);
       } else {
         gradeArray[i] = 0;
-        console.log('black grade check 3: ', gradeArray);
       }
     }
     let blackKeyCheck = () => {
       console.log('blackKeyCheck function fired');
       let blackKeyCount = 0;
       for (let i = 0; i < gradeArray.length; i++) {
-        console.log('I-loop black ' + `${i}`);
+        console.log('I-loop black ' + i);
         console.log('black grade check for loop: ', gradeArray);
         if (gradeArray[i] === 1) {
           blackKeyCount++;
@@ -180,16 +181,15 @@ $(document).ready(function() {
         // if (i !== j) { 
         //   console.log('%%% i !== j %%%'); 
         // }
-        if ((codeArray[i] === guessArray[j]) && (i !== j)) {          
+        if (codeArray[i] === guessArray[j]) {          
           console.log('white grade check 1: ', gradeArray);
           gradeArray[i] = 2;
           guessArray[j] = -2;
+          break;          
           console.log('codeArray: ', codeArray);
           console.log('guessArray: ', guessArray);
           console.log('gradeArray: ', gradeArray);        
           console.log('white grade check 2: ', gradeArray);
-        } else if (codeArray[i] === guessArray[j]) {
-          gradeArray[i] = 0;
         }
       }
     }
