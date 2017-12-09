@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  
+
   window.onbeforeunload = function () {
     window.scrollTo(0, 0);    
   }
@@ -7,12 +7,14 @@ $(document).ready(function() {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // TOP LEVEL VARIABLE DECLARATIONS   
   const colorN = 'rgb(170, 170, 170)';  
-  const color1 = $('.color-1').css('background-color');  
-  const color2 = $('.color-2').css('background-color');  
-  const color3 = $('.color-3').css('background-color'); 
+  const color1 = $('.color-1').css('background-color');
+  const color2 = $('.color-2').css('background-color');
+  const color3 = $('.color-3').css('background-color');  
   const color4 = $('.color-4').css('background-color');  
-  const color5 = $('.color-5').css('background-color');  
+  const color5 = $('.color-5').css('background-color');
   const color6 = $('.color-6').css('background-color');
+
+  const color = [color1, color2, color3, color4, color5, color6];
   
   let bgColor = color1;
   let clickCount = 0;
@@ -41,8 +43,7 @@ $(document).ready(function() {
     return codeArray;
   }
   let codeArray = makeCode();
-  // let codeArray = [3,1,4,1];
-  
+  // let codeArray = [3,2,4,0];  
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   $('#color-selector .cdBkr-spot').click(function() {
@@ -50,8 +51,7 @@ $(document).ready(function() {
     $('#color-selector .cdBkr-spot').removeClass('selected');
     $(this).css('border-width', '6px');
     $(this).addClass('selected');
-    bgColor = $('#color-selector .cdBkr-spot.selected').css('background-color');    
-    
+    bgColor = $('#color-selector .cdBkr-spot.selected').css('background-color');        
   });
 
   const showSubmit = () => {
@@ -64,8 +64,7 @@ $(document).ready(function() {
   }
 
   const guessIfActive = () => {    
-    $('.row.active .cdBkr-spot').click(function() {
-      
+    $('.row.active .cdBkr-spot').click(function() {      
       $(this).css('background-color', bgColor);      
       $(this).addClass('guess-made');      
       showSubmit();   
@@ -78,204 +77,81 @@ $(document).ready(function() {
   let gradeArray = [0,0,0,0];
 
   $('#submit').click(function() {
-   
-    clickCount++;       
+    
+    clickCount++;
     
     $('#submit').removeClass('show');
 
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === color1) { guessArray.push(0); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === color2) { guessArray.push(1); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === color3) { guessArray.push(2); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === color4) { guessArray.push(3); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === color5) { guessArray.push(4); }
-    if ($('.row.active .cdBkr-spot-1').css('background-color') === color6) { guessArray.push(5); }
-
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === color1) { guessArray.push(0); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === color2) { guessArray.push(1); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === color3) { guessArray.push(2); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === color4) { guessArray.push(3); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === color5) { guessArray.push(4); }
-    if ($('.row.active .cdBkr-spot-2').css('background-color') === color6) { guessArray.push(5); }
-
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === color1) { guessArray.push(0); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === color2) { guessArray.push(1); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === color3) { guessArray.push(2); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === color4) { guessArray.push(3); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === color5) { guessArray.push(4); }
-    if ($('.row.active .cdBkr-spot-3').css('background-color') === color6) { guessArray.push(5); }
-
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === color1) { guessArray.push(0); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === color2) { guessArray.push(1); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === color3) { guessArray.push(2); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === color4) { guessArray.push(3); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === color5) { guessArray.push(4); }
-    if ($('.row.active .cdBkr-spot-4').css('background-color') === color6) { guessArray.push(5); }
+    // Populating the guess array based off user input ~~~~~~~~~~~~~~~
+    for (let i = 0; i <= 3; i++) {      
+      for (let j = 0; j <= 5; j++) {
+        if ($(`.row.active .cdBkr-spot-${i+1}`).css('background-color') === color[j]) {
+          guessArray.push(j);          
+        }
+      }
+    }    
     
+    // saves original version of codeArray to revert back to
     let saveCodeArray = codeArray.slice();
-    
+
     // Black Key Check
     for (let i = 0; i < guessArray.length; i++) {
       if (codeArray[i] === guessArray[i]) {       
         gradeArray[i] = 1;
         codeArray[i] = -1;
-        guessArray[i] = -2;               
+        guessArray[i] = -2;                       
       } else {
         gradeArray[i] = 0;
       }
     }
 
-    let blackKeyCheck = () => {      
-      let blackKeyCount = 0;
-      for (let i = 0; i < gradeArray.length; i++) {        
-        if (gradeArray[i] === 1) {
-          blackKeyCount++;          
-        }
-      }
-      if (blackKeyCount === 1) {
-        $('.row.active .cdMkr-spot-1').css('background-color', color4);
-      }
-      if (blackKeyCount === 2) {
-        $('.row.active .cdMkr-spot-1').css('background-color', color4);
-        $('.row.active .cdMkr-spot-2').css('background-color', color4);
-      }
-      if (blackKeyCount === 3) {
-        $('.row.active .cdMkr-spot-1').css('background-color', color4);
-        $('.row.active .cdMkr-spot-2').css('background-color', color4);
-        $('.row.active .cdMkr-spot-3').css('background-color', color4);
-      }
-      if (blackKeyCount === 4) {
-        $('.row.active .cdMkr-spot-1').css('background-color', color4);
-        $('.row.active .cdMkr-spot-2').css('background-color', color4);
-        $('.row.active .cdMkr-spot-3').css('background-color', color4);
-        $('.row.active .cdMkr-spot-4').css('background-color', color4);
-      }
-    }
-    blackKeyCheck();
-    // END Black Key Check
-
     // White Key Check
-    for (let i = 0; i < 4; i++) {    
-      for (let j = 0; j < 4; j++) {
+    for (let i = 0; i < 4; i++) {      
+      for (let j = 0; j < 4; j++) {                      
         if (codeArray[i] === guessArray[j]) {                    
-          gradeArray[i] = 2;
+          gradeArray[j] = 2;
           guessArray[j] = -2;
-          break;          
+          break;                  
         }
       }
     }
-    let whiteKeyCheck = () => {
-      let blackKeyCount = 0;
-      for (let i = 0; i < gradeArray.length; i++) {
-        if (gradeArray[i] === 1) {
-          blackKeyCount++;          
-        }
-      }
-      let whiteKeyCount = 0;
-      for (let i = 0; i < gradeArray.length; i++) {
-        if (gradeArray[i] === 2) {
-          whiteKeyCount++;
-          
-        }
-      }
-      if (blackKeyCount === 4) {
-        $('#winner').css('left', 0);
-      }
 
-      if ((blackKeyCount === 3) && (whiteKeyCount === 1)) {
-        $('.row.active .cdMkr-spot-4').css('background-color', color3); 
-      }
+    // place grade pegs based off black & white checks    
+    let blackGradeArray = gradeArray.filter(black => black === 1);
+    let whiteGradeArray = gradeArray.filter(white => white === 2);
+    let blankGradeArray = gradeArray.filter(blank => blank === 0);
+    let sortedGradeArray = (blackGradeArray.concat(whiteGradeArray)).concat(blankGradeArray);
 
-      if ((blackKeyCount === 2) && (whiteKeyCount === 2)) {
-        $('.row.active .cdMkr-spot-3').css('background-color', color3);
-        $('.row.active .cdMkr-spot-4').css('background-color', color3);  
+    for (let i = 0; i < sortedGradeArray.length; i++) {
+      if (sortedGradeArray[i] === 1) {        
+        $(`.row.active .cdMkr-spot-${i+1}`).css('background-color', color4);
+      } else if (sortedGradeArray[i] === 2) {        
+        $(`.row.active .cdMkr-spot-${i+1}`).css('background-color', color3);
       }
-      if ((blackKeyCount === 2) && (whiteKeyCount === 1)) {
-        $('.row.active .cdMkr-spot-3').css('background-color', color3);
-      }      
-
-      if ((blackKeyCount === 1) && (whiteKeyCount === 3)) {
-        $('.row.active .cdMkr-spot-2').css('background-color', color3);
-        $('.row.active .cdMkr-spot-3').css('background-color', color3);
-        $('.row.active .cdMkr-spot-4').css('background-color', color3);
-      }
-      if ((blackKeyCount === 1) && (whiteKeyCount === 2)) {
-        $('.row.active .cdMkr-spot-2').css('background-color', color3);
-        $('.row.active .cdMkr-spot-3').css('background-color', color3);
-      }
-      if ((blackKeyCount === 1) && (whiteKeyCount === 1)) {
-        $('.row.active .cdMkr-spot-2').css('background-color', color3);
-      }            
-
-      if ((blackKeyCount === 0) && (whiteKeyCount === 4)) {
-        $('.row.active .cdMkr-spot-1').css('background-color', color3);
-        $('.row.active .cdMkr-spot-2').css('background-color', color3);
-        $('.row.active .cdMkr-spot-3').css('background-color', color3);
-        $('.row.active .cdMkr-spot-4').css('background-color', color3);
-      }
-      if ((blackKeyCount === 0) && (whiteKeyCount === 3)) {
-        $('.row.active .cdMkr-spot-1').css('background-color', color3);
-        $('.row.active .cdMkr-spot-2').css('background-color', color3);
-        $('.row.active .cdMkr-spot-3').css('background-color', color3);
-      }
-      if ((blackKeyCount === 0) && (whiteKeyCount === 2)) {
-        $('.row.active .cdMkr-spot-1').css('background-color', color3);
-        $('.row.active .cdMkr-spot-2').css('background-color', color3);
-      } 
-      if ((blackKeyCount === 0) && (whiteKeyCount === 1)) {
-        $('.row.active .cdMkr-spot-1').css('background-color', color3);
-      }              
     }
-    whiteKeyCheck();
-    // END White Key Check
 
+    if (gradeArray[0] === 1 && gradeArray[1] === 1 && gradeArray[2] === 1 && gradeArray[3] === 1) {
+      $('#winner').css('left', 0);
+    }
+
+    // replaces manipulated version of codeArray to original
     codeArray = saveCodeArray;
     
-    guessArray = [];    
-        
-    if (clickCount === 1) {
-      $('#row-1.row').removeClass('active');
-      $('#row-2.row').addClass('active');
-      
-    }
-    if (clickCount === 2) {
-      $('#row-2.row').removeClass('active');
-      $('#row-3.row').addClass('active');
-      
-    }
-    if (clickCount === 3) {
-      $('#row-3.row').removeClass('active');
-      $('#row-4.row').addClass('active');
-    }
-    if (clickCount === 4) {
-      $('#row-4.row').removeClass('active');
-      $('#row-5.row').addClass('active');
-    }
-    if (clickCount === 5) {
-      $('#row-5.row').removeClass('active');
-      $('#row-6.row').addClass('active');
-    }
-    if (clickCount === 6) {
-      $('#row-6.row').removeClass('active');
-      $('#row-7.row').addClass('active');
-    }
-    if (clickCount === 7) {
-      $('#row-7.row').removeClass('active');
-      $('#row-8.row').addClass('active');
-    }
-    if (clickCount === 8) {
-      $('#row-8.row').removeClass('active');
-      $('#row-9.row').addClass('active');
-    }
-    if (clickCount === 9) {
-      $('#row-9.row').removeClass('active');
-      $('#row-10.row').addClass('active');
-    }
-    if (clickCount === 10) {
-      for (let i = 0; i < 4; i++) {
-        if (gradeArray[i] !== 1) {          
-          $('#loser').css('left', 0);
-        }
-      }                   
+    guessArray = [];  
+    
+    // move active row after each user guess    
+    for (let i = 1; i <= 10; i++) {
+      if (clickCount === i) {
+        $(`#row-${i}.row`).removeClass('active');
+        $(`#row-${i+1}.row`).addClass('active');
+      }
+      if (clickCount === 10) {
+        for (let i = 0; i < 4; i++) {
+          if (gradeArray[i] !== 1) {          
+            $('#loser').css('left', 0);
+          }
+        }                   
+      }
     }
 
     guessIfActive();
@@ -295,7 +171,7 @@ $(document).ready(function() {
     $('#rules').css('right', '0%');      
   });
   $('#rules .icon').click(function () {
-    $('#rules').css('right', '100%');   
+    $('#rules').css('right', '100%');
   });
   
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
