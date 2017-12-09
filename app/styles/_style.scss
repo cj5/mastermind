@@ -89,7 +89,25 @@ body {
     font-size: 14px;
     font-weight: normal;
     &:hover {
-      color: rgb(57,176,80);
+      color: $color-5;
+    }
+  }
+}
+#reset-btn {
+  position: absolute;
+  right: 44px;
+  top: -25px;
+  p {
+    position: absolute;
+    color: #999;
+    text-transform: uppercase;
+    line-height: 18px;
+    transition: 0.2s all ease-in-out;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: normal;
+    &:hover {
+      color: $color-1;
     }
   }
 }
@@ -307,15 +325,12 @@ h1.title {
   top: 167px;
   background-color: #ddd;
   border-radius: 5px;
-  padding: 18px 12px;
+  padding: 8px 12px;
   transition: 0.3s all ease; 
   .cdBkr-spot {
     width: 50px;
     height: 50px;
-    margin-bottom: 10px;
-    &:last-child {
-      margin-bottom: 0;
-    }
+    margin: 10px 0;
   }  
 }
 

@@ -6,26 +6,20 @@ $(document).ready(function() {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // TOP LEVEL VARIABLE DECLARATIONS   
-  const colorN = 'rgb(170, 170, 170)';
-  // console.log('colorN: ', colorN);
-  const color1 = $('.color-1').css('background-color');
-  // console.log('color1: ', color1);
-  const color2 = $('.color-2').css('background-color');
-  // console.log('color2: ', color2);
-  const color3 = $('.color-3').css('background-color');
-  // console.log('color3: ', color3);
-  const color4 = $('.color-4').css('background-color');
-  // console.log('color4: ', color4);
-  const color5 = $('.color-5').css('background-color');
-  // console.log('color5: ', color5);
+  const colorN = 'rgb(170, 170, 170)';  
+  const color1 = $('.color-1').css('background-color');  
+  const color2 = $('.color-2').css('background-color');  
+  const color3 = $('.color-3').css('background-color'); 
+  const color4 = $('.color-4').css('background-color');  
+  const color5 = $('.color-5').css('background-color');  
   const color6 = $('.color-6').css('background-color');
-  // console.log('color6: ', color6);
+  
   let bgColor = color1;
   let clickCount = 0;
-  console.log('clickCount: ', clickCount);
+  
   $('body').css('overflow-y', 'hidden');
   const vpWidth = $(window).width();
-  console.log('vpWidth', vpWidth);
+  
   $('body').css('overflow-y', 'visible');
   const vpHeight = $(window).height();
 
@@ -39,16 +33,16 @@ $(document).ready(function() {
   $('.rules-wrapper').css('height', vpHeight - 220);
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // const makeCode = () => {
-  //   let codeArray = [];
-  //   for (let i = 0; i < 4; i++) {
-  //     codeArray.push(Math.floor(Math.random() * 6));
-  //   }
-  //   return codeArray;
-  // }
-  // let codeArray = makeCode();
-  let codeArray = [2,2,1,2];
-  console.log('❱❱ Code to break: ', codeArray);
+  const makeCode = () => {
+    let codeArray = [];
+    for (let i = 0; i < 4; i++) {
+      codeArray.push(Math.floor(Math.random() * 6));
+    }
+    return codeArray;
+  }
+  let codeArray = makeCode();
+  // let codeArray = [3,1,4,1];
+  
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   $('#color-selector .cdBkr-spot').click(function() {
@@ -57,7 +51,7 @@ $(document).ready(function() {
     $(this).css('border-width', '6px');
     $(this).addClass('selected');
     bgColor = $('#color-selector .cdBkr-spot.selected').css('background-color');    
-    // console.log('Selected color: ', bgColor);
+    
   });
 
   const showSubmit = () => {
@@ -71,7 +65,7 @@ $(document).ready(function() {
 
   const guessIfActive = () => {    
     $('.row.active .cdBkr-spot').click(function() {
-      // console.log('clicked-active');   
+      
       $(this).css('background-color', bgColor);      
       $(this).addClass('guess-made');      
       showSubmit();   
@@ -84,8 +78,7 @@ $(document).ready(function() {
   let gradeArray = [0,0,0,0];
 
   $('#submit').click(function() {
-
-    console.log('clickCountBefore: ', clickCount);
+   
     clickCount++;       
     
     $('#submit').removeClass('show');
@@ -118,35 +111,24 @@ $(document).ready(function() {
     if ($('.row.active .cdBkr-spot-4').css('background-color') === color5) { guessArray.push(4); }
     if ($('.row.active .cdBkr-spot-4').css('background-color') === color6) { guessArray.push(5); }
     
-    console.log('guessArray: ', guessArray);
-    console.log('codeArray: ', codeArray);    
-
     let saveCodeArray = codeArray.slice();
-    // console.log('saveCodeArray: ', saveCodeArray);
-
+    
     // Black Key Check
     for (let i = 0; i < guessArray.length; i++) {
-      if (codeArray[i] === guessArray[i]) {
-        console.log('black grade check 1: ', gradeArray);
+      if (codeArray[i] === guessArray[i]) {       
         gradeArray[i] = 1;
         codeArray[i] = -1;
-        guessArray[i] = -2;
-        console.log('black grade check 2: ', gradeArray);
-        console.log('codeArray: ', codeArray);
-        console.log('guessArray: ', guessArray);
+        guessArray[i] = -2;               
       } else {
         gradeArray[i] = 0;
       }
     }
-    let blackKeyCheck = () => {
-      console.log('blackKeyCheck function fired');
+
+    let blackKeyCheck = () => {      
       let blackKeyCount = 0;
-      for (let i = 0; i < gradeArray.length; i++) {
-        console.log('I-loop black ' + i);
-        console.log('black grade check for loop: ', gradeArray);
+      for (let i = 0; i < gradeArray.length; i++) {        
         if (gradeArray[i] === 1) {
-          blackKeyCount++;
-          console.log('blackKeyCount: ', blackKeyCount);
+          blackKeyCount++;          
         }
       }
       if (blackKeyCount === 1) {
@@ -172,28 +154,16 @@ $(document).ready(function() {
     // END Black Key Check
 
     // White Key Check
-    for (let i = 0; i < 4; i++) {
-      console.log('I-LOOP WHITE ' + i);
+    for (let i = 0; i < 4; i++) {    
       for (let j = 0; j < 4; j++) {
-        console.log('jloop white ' + j);
-        // console.log('i: ', i);
-        // console.log('j: ', j);
-        // if (i !== j) { 
-        //   console.log('%%% i !== j %%%'); 
-        // }
-        if (codeArray[i] === guessArray[j]) {          
-          console.log('white grade check 1: ', gradeArray);
+        if (codeArray[i] === guessArray[j]) {                    
           gradeArray[i] = 2;
           guessArray[j] = -2;
           break;          
-          console.log('codeArray: ', codeArray);
-          console.log('guessArray: ', guessArray);
-          console.log('gradeArray: ', gradeArray);        
-          console.log('white grade check 2: ', gradeArray);
         }
       }
     }
-    let WhiteKeyCheck = () => {
+    let whiteKeyCheck = () => {
       let blackKeyCount = 0;
       for (let i = 0; i < gradeArray.length; i++) {
         if (gradeArray[i] === 1) {
@@ -204,7 +174,7 @@ $(document).ready(function() {
       for (let i = 0; i < gradeArray.length; i++) {
         if (gradeArray[i] === 2) {
           whiteKeyCount++;
-          console.log('whiteKeyCount: ', whiteKeyCount);         
+          
         }
       }
       if (blackKeyCount === 4) {
@@ -255,29 +225,22 @@ $(document).ready(function() {
         $('.row.active .cdMkr-spot-1').css('background-color', color3);
       }              
     }
-    WhiteKeyCheck();
+    whiteKeyCheck();
     // END White Key Check
 
     codeArray = saveCodeArray;
-    // console.log('saveCodeArray: ', saveCodeArray);
-    // console.log('codeArray: ', codeArray);
-
-    console.log('codeArray: ', codeArray);
-    console.log('guessArray: ', guessArray);
-    console.log('gradeArray: ', gradeArray);
-    console.log('clickCountAfter: ', clickCount);    
-
+    
     guessArray = [];    
         
     if (clickCount === 1) {
       $('#row-1.row').removeClass('active');
       $('#row-2.row').addClass('active');
-      // console.log('row-1 not-active');
+      
     }
     if (clickCount === 2) {
       $('#row-2.row').removeClass('active');
       $('#row-3.row').addClass('active');
-      // console.log('row-2 not-active');
+      
     }
     if (clickCount === 3) {
       $('#row-3.row').removeClass('active');
@@ -323,6 +286,10 @@ $(document).ready(function() {
     location.reload();
   });
 
+  $('#reset-btn p').click(function () {
+    location.reload();
+  });
+
   $('#rules .icon').css('right', '100%');
   $('#rules-btn p').click(function () {
     $('#rules').css('right', '0%');      
@@ -335,7 +302,7 @@ $(document).ready(function() {
   function updateContainer() {
     $('body').css('overflow-y', 'hidden');
     const vpWidth = $(window).width();
-    console.log('vpWidth', vpWidth);
+    
     $('body').css('overflow-y', 'visible');
 
     const gameBoardWidth = $('#gameboard').outerWidth();
