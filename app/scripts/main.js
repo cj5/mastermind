@@ -34,7 +34,13 @@ $(document).ready(function() {
     const posSubmitButton = ((vpWidth - gameBoardWidth) / 2) - 150;
     $('#submit').css('right', posSubmitButton);
   }    
-  $('.rules-wrapper').css('height', vpHeight - 220);
+  if (vpWidth > 820) {
+      const vpHeight = $(window).height();
+      $('.rules-wrapper').css('height', vpHeight - 220);
+    } else {
+      const vpHeight = $(window).height();
+      $('.rules-wrapper').css('height', vpHeight - 150);
+    }
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const makeCode = () => {
@@ -61,7 +67,8 @@ $(document).ready(function() {
     && $('.row.active .cdBkr-spot-2').hasClass('guess-made')
     && $('.row.active .cdBkr-spot-3').hasClass('guess-made')
     && $('.row.active .cdBkr-spot-4').hasClass('guess-made')) {      
-      $('#submit').addClass('show');
+      $('.submit').addClass('show');
+      // $('.options #submit').addClass('show');
     }
   }
 
@@ -78,11 +85,11 @@ $(document).ready(function() {
   let guessArray = [];
   let gradeArray = [0,0,0,0];
 
-  $('#submit').click(function() {
+  $('.submit').click(function() {
     
     clickCount++;
     
-    $('#submit').removeClass('show');
+    $('.submit').removeClass('show');
 
     // Populating the guess array based off user input ~~~~~~~~~~~~~~~
     for (let i = 0; i <= 3; i++) {      
@@ -189,14 +196,19 @@ $(document).ready(function() {
       const posColorSelector = ((vpWidth - gameBoardWidth) / 2) - 120;
       $('#color-selector').css('left', posColorSelector);
       const posSubmitButton = ((vpWidth - gameBoardWidth) / 2) - 150;    
-      $('#submit').css('right', posSubmitButton);
+      $('.submit').css('right', posSubmitButton);
       $('#color-selector').css('width', 'auto');
     } else {
       $('#color-selector').css('left', '50%');
       $('#color-selector').css('width', gameBoardWidth);
     }
-    const vpHeight = $(window).height();
-    $('.rules-wrapper').css('height', vpHeight - 220);
+    if (vpWidth > 820) {
+      const vpHeight = $(window).height();
+      $('.rules-wrapper').css('height', vpHeight - 220);
+    } else {
+      const vpHeight = $(window).height();
+      $('.rules-wrapper').css('height', vpHeight - 150);
+    }
   }
 
   $(window).resize(function() {

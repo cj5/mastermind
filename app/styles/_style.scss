@@ -33,7 +33,7 @@ body {
   width: 100%;
   height: 100%;
   text-align: center;
-  z-index: 999;
+  z-index: 9999;
   transition: 0.5s all ease-in-out;
   left: 100%;
   .winner-wrapper, .loser-wrapper {
@@ -128,14 +128,14 @@ body {
   }
   .rules-title {
     max-width: 500px;
+    width: 95%;
     margin: 0 auto 10px;
     display: block;
     h3 {
       color: $color-6;
       text-transform: uppercase;
       margin-bottom: 0px;
-      position: relative;
-      left: 5px;
+      position: relative;      
       top: 2px;
       font-size: 20px;
       margin-top: 8px;
@@ -145,7 +145,7 @@ body {
       width: 34px;
       height: 34px;
       position: relative;
-      left: 10px;          
+      left: 5px;          
       fill: #fff;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
@@ -158,13 +158,15 @@ body {
   .rules-wrapper {
     overflow-y: scroll;      
     max-width: 500px;
+    width: 90%;
     // max-height: 550px;      
     margin: 0 auto 50px;
     display: block;
     border: 2px solid #fff;
     border-radius: 5px;
-    position: relative;
-    left: 7px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 999999;       
     .text-wrapper {
       padding: 0 25px;
@@ -425,7 +427,7 @@ body .desktop {
   }
 
   h1.title {
-    font-size: 16px;
+    font-size: 20px;
     margin: 15px 0;
   }
 
@@ -444,7 +446,7 @@ body .desktop {
   }
   #gameboard {
     padding: 6px 20px;
-    margin-top: 127px;
+    margin-top: 188px;
   }
   .cdBkr-spots-wrapper {
     display: inline-block;
@@ -481,21 +483,11 @@ body .desktop {
     display: inline-block;
   }
 
-  .mobile-buttons-wrapper {
-    // background-color: #242424;
-    // display: inline-block;
-    // overflow: hidden;
-    // width: 100%;
-    // height: 75px;
-    // position: absolute;
-    // left: 0;
-    // top: 59px;
-  }
   #submit {
     right: initial;
     left: 50%;
     transform: translateX(-50%);
-    top: 73px;
+    top: 75px;
   }
   #rules-btn {
     top: -44px;
@@ -508,7 +500,20 @@ body .desktop {
     top: 0;
     width: 100%;
     height: auto;
-    background-color: red;
+    background-color: #242424;
+    z-index: 999;
+    #color-selector {
+      position: relative;
+      top: 0;
+      margin-bottom: 80px;
+    }
+    #rules-btn, #reset-btn {
+      top: 90px;
+    }
+    #submit {
+      position: absolute;
+      // z-index: 99999999;
+    }
   }
   body .mobile {
     display: inline-block;
@@ -547,8 +552,7 @@ body .desktop {
     padding: 4px 0;
   }
   #gameboard {
-    padding: 6px 8px;
-    margin-top: 127px;
+    padding: 6px 8px;      
   }
   .cdBkr-spots-wrapper {
     display: inline-block;
@@ -573,8 +577,7 @@ body .desktop {
 
   #color-selector {
     width: auto;
-    position: fixed;
-    left: 15px;
+    position: fixed;    
     top: 40px;
     background-color: #ddd;
     border-radius: 5px;
@@ -584,23 +587,19 @@ body .desktop {
   #color-selector .cdBkr-spot {
     width: 40px;
     height: 40px;
-    margin: 0;
+    margin: 0 3px;
     display: inline-block;
   }
 
-  #submit {
-    right: initial;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 112px;
+  #rules h1 {
+    margin: 20px auto 0px;
   }
-  #rules-btn {
-    top: -44px;
+  #rules .rules-wrapper .text-wrapper {
+    padding: 0 18px;
+    margin: 18px auto;    
   }
-  #reset-btn {
-    position: absolute;
-    right: 44px;
-    bottom: -30px;
-    top: initial;
+  #rules .rules-wrapper .text-wrapper p {
+    font-size: 16px;
+    line-height: 20px;
   }
 }
