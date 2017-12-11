@@ -41,7 +41,11 @@ $(document).ready(function() {
     const vpHeight = $(window).height();
     $('.rules-wrapper').css('height', vpHeight - 150);
   }
-  if (vpWidth <= 840 && vpWidth > 500) {    
+  if (vpWidth > 1000) {
+    $('#timer').css('right', 80);
+  } else if (vpWidth > 840) {
+    $('#timer').css('right', 30);
+  } else if (vpWidth <= 840 && vpWidth > 500) {    
     $('#timer').css('right', (vpWidth - gameBoardWidth) / 2);
   } else {
     $('#timer').css('right', 20);
@@ -109,10 +113,10 @@ $(document).ready(function() {
     }
     
     time.textContent = 
-    (m != 0 ? m + ":" : "") + // display minutes
-    (m != 0 ? (s > 9 ? s : "0" + s) : s) + "." + // display seconds
-    (ms ? (ms > 9 ? ms : "" + ms) : "0") + // display milliseconds
-    (m != 0 ? " m" : " s"); // display units of time
+    (m != 0 ? m + ':' : '') + // display minutes
+    (m != 0 ? (s > 9 ? s : '0' + s) : s) + '.' + // display seconds
+    (ms ? (ms > 9 ? ms : '' + ms) : '0') + // display milliseconds
+    (m != 0 ? ' m' : ' s'); // display units of time
 
     timer();
   }
@@ -263,7 +267,11 @@ $(document).ready(function() {
       const vpHeight = $(window).height();
       $('.rules-wrapper').css('height', vpHeight - 150);
     }
-    if (vpWidth <= 840 && vpWidth > 500) {    
+    if (vpWidth > 1000) {
+      $('#timer').css('right', 80);
+    } else if (vpWidth > 840) {
+      $('#timer').css('right', 30);
+    } else if (vpWidth <= 840 && vpWidth > 500) {    
       $('#timer').css('right', (vpWidth - gameBoardWidth) / 2);
     } else {
       $('#timer').css('right', 20);
