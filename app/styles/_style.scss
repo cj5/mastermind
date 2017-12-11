@@ -33,13 +33,13 @@ body {
   width: 100%;
   height: 100%;
   text-align: center;
-  z-index: 9999;
+  z-index: 99999;
   transition: 0.5s all ease-in-out;
   left: 100%;
   .winner-wrapper, .loser-wrapper {
     position: absolute;
     width: 80%;
-    top: 50%;
+    top: 47%;
     left: 50%;
     transform: translate(-50%, -50%);
     h2 {
@@ -58,15 +58,12 @@ body {
       border-radius: 5px;
       cursor: pointer;
       color: #fff;
-      // background: rgba(255,255,255,0.3);
-      background: rgba(57,176,80,1);
+      background: rgba(255,255,255,0.3);
       transition: 0.2s all ease-in-out;
       &:hover {
         background: rgba(255,255,255,0.3);
-        // border: 3px solid #fff;
-        // background: rgba(39,57,232,1);
-        color: #fff;
-        // color: #000;
+        background: $color-5;
+        color: #fff;        
       }
     }
   }
@@ -116,7 +113,7 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;  
-  z-index: 9999;
+  z-index: 9999999;
   transition: 0.2s all ease-in-out;  
   right: 100%;
   overflow-x: hidden;  
@@ -184,6 +181,92 @@ body {
     }
   }
 }
+
+.user-time {
+  position: relative;   
+  color: #fff;
+  margin-bottom: 30px;  
+  h3 {
+    font-size: 20px;
+    margin: 10px 0 0;
+    color: #aaa;   
+  }
+  p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: $color-3;
+  }
+}
+
+.out-of-time {
+  color: $color-1;
+  font-size: 20px;
+  margin: 10px 0 0;
+}
+
+.time {
+  font-family: 'Lato', 'Josefin Sans', Helvetica, sans-serif;
+}
+
+.start-timer-wrapper {
+  position: absolute;
+  border: 2px solid #ddd;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.8);
+  border-radius: 5px;
+  .start-timer {    
+    cursor: pointer;
+    margin: 40px auto 10px;
+    display: inline-block;    
+    p {
+      background-color: $color-3;
+      color: $color-4;
+      border: 2px solid $color-3;
+      border-radius: 5px;
+      padding: 10px 60px;
+      text-transform: uppercase;
+      font-size: 24px;
+      text-align: center;
+      margin: 0;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background-color: $color-5;
+        color: $color-3;
+      }
+    }
+  }
+}
+
+#timer {
+  border: 2px solid #fff;
+  padding: 10px;
+  border-radius: 5px;
+  position: fixed;
+  width: auto;
+  min-width: 100px;
+  color: #fff;
+  right: 20px;
+  top: 20px;
+  z-index: 9999; 
+  h4 {
+    text-transform: uppercase;
+    color: $color-5;
+    font-size: 14px;
+    margin-top: 0px;
+  }
+  p {
+    font-size: 20px;
+    margin: 0;
+  }
+}
+
 #main-wrapper {
   text-align: center;
 }
@@ -197,8 +280,7 @@ h1.title {
   margin-top: 50px;
   font-size: 70px;
   position: relative;
-  display: inline-block;
-  // z-index: 999;
+  display: inline-block;  
 }
 #gameboard {
   animation: 0.3s ease slideInFromBottom;
@@ -226,8 +308,7 @@ h1.title {
   }
 }
 .row.active {
-  border: 2px solid #555;
-  // background: rgba(57,176,80,0.3);
+  border: 2px solid #555;  
   background: #fff;
 }
 .cdBkr-spots-wrapper {
@@ -388,7 +469,7 @@ body .desktop {
   display: inline-block;
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 840px) {
   .mobile-coming {
     display: inline-block;
     visibility: visible;
@@ -455,12 +536,9 @@ body .desktop {
     padding-left: 5px;
     padding-right: 20px;
     float: left;
-    height: 60px;
-    // border-right: 0px solid #999;
+    height: 60px;    
   }
-  .cdMkr-spots-wrapper {
-    // width: 19%;
-    // margin-right: 1%;
+  .cdMkr-spots-wrapper {    
     display: inline-block;
     float: right;
   }
@@ -529,7 +607,15 @@ body .desktop {
     bottom: 44px;
     top: initial;
   }
-
+  #timer {
+    border: none;
+    padding: 0;
+    margin: 0;    
+    min-width: inherit;
+    color: #fff;    
+    right: 20px;    
+    top: 10px;
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -605,4 +691,12 @@ body .desktop {
   #rules .rules-title h3 {
     font-size: 16px;
   }
+
+  #timer {
+    width: auto;    
+    p {
+      font-size: 16px;
+    }
+  }
+
 }

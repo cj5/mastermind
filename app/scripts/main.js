@@ -28,19 +28,24 @@ $(document).ready(function() {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // GAME BOARD POSITIONING
   const gameBoardWidth = $('#gameboard').outerWidth();
-  if (vpWidth > 820) {
+  if (vpWidth > 840) {
     const posColorSelector = ((vpWidth - gameBoardWidth) / 2) - 120;
     $('#color-selector').css('left', posColorSelector);
     const posSubmitButton = ((vpWidth - gameBoardWidth) / 2) - 150;
     $('#submit').css('right', posSubmitButton);
   }    
-  if (vpWidth > 820) {
-      const vpHeight = $(window).height();
-      $('.rules-wrapper').css('height', vpHeight - 220);
-    } else {
-      const vpHeight = $(window).height();
-      $('.rules-wrapper').css('height', vpHeight - 150);
-    }
+  if (vpWidth > 840) {
+    const vpHeight = $(window).height();
+    $('.rules-wrapper').css('height', vpHeight - 220);
+  } else {
+    const vpHeight = $(window).height();
+    $('.rules-wrapper').css('height', vpHeight - 150);
+  }
+  if (vpWidth <= 840 && vpWidth > 500) {    
+    $('#timer').css('right', (vpWidth - gameBoardWidth) / 2);
+  } else {
+    $('#timer').css('right', 20);
+  }
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const makeCode = () => {
@@ -51,7 +56,7 @@ $(document).ready(function() {
     return codeArray;
   }
   let codeArray = makeCode();
-  // let codeArray = [3,2,4,0];  
+  // let codeArray = [0,0,0,0];  
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   $('#color-selector .cdBkr-spot').click(function() {
@@ -72,7 +77,7 @@ $(document).ready(function() {
     }
   }
 
-  const guessIfActive = () => {    
+ const guessIfActive = () => {    
     $('.row.active .cdBkr-spot').click(function() {      
       $(this).css('background-color', bgColor);      
       $(this).addClass('guess-made');      
@@ -81,7 +86,56 @@ $(document).ready(function() {
   }
   guessIfActive();
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Timer stuff ~~~~~~~~~~~~
+  let time = $('#time')[0];
+  let start = document.getElementsByClassName('start-timer p');
+  let ms = 0;
+  let s = 0;
+  let m = 0;
+  const timeLimit_mins = 5;
+
+  function timeUp() {
+    ms++;
+    if (ms >= 10) {
+      ms = 0;
+      s++;
+      if (s >= 60) {
+        s = 0;
+        m++;
+        if (m >= timeLimit_mins) {
+          $('#loser').css('left', 0);
+        }
+      }
+    }
+    
+    time.textContent = 
+    (m != 0 ? m + ":" : "") + // display minutes
+    (m != 0 ? (s > 9 ? s : "0" + s) : s) + "." + // display seconds
+    (ms ? (ms > 9 ? ms : "" + ms) : "0") + // display milliseconds
+    (m != 0 ? " m" : " s"); // display units of time
+
+    timer();
+  }
+  function timer() {    
+    if ($('#winner').css('left') === '0px' || $('#loser').css('left') === '0px') {      
+      const userTime = time.textContent;
+      console.log('userTime: ', userTime);
+      $('.user-time p').html(userTime);
+      $('.out-of-time').html('You ran out of time');
+      return;                     
+    } else {
+      setTimeout(timeUp, 100);
+    }
+  }
+
+  $('.start-timer p').click(function() {
+    timer();
+    $('#row-1').addClass('active');
+    guessIfActive();
+    $('.start-timer-wrapper').hide();
+  });
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   let guessArray = [];
   let gradeArray = [0,0,0,0];
 
@@ -95,7 +149,7 @@ $(document).ready(function() {
     for (let i = 0; i <= 3; i++) {      
       for (let j = 0; j <= 5; j++) {
         if ($(`.row.active .cdBkr-spot-${i+1}`).css('background-color') === color[j]) {
-          guessArray.push(j);          
+          guessArray.push(j);
         }
       }
     }    
@@ -140,7 +194,7 @@ $(document).ready(function() {
     }
 
     if (gradeArray[0] === 1 && gradeArray[1] === 1 && gradeArray[2] === 1 && gradeArray[3] === 1) {
-      $('#winner').css('left', 0);
+      $('#winner').css('left', 0);      
     }
 
     // replaces manipulated version of codeArray to original
@@ -192,7 +246,7 @@ $(document).ready(function() {
 
     const gameBoardWidth = $('#gameboard').outerWidth();
     console.log('vpWidth: ', vpWidth);
-    if (vpWidth > 820) {
+    if (vpWidth > 840) {
       const posColorSelector = ((vpWidth - gameBoardWidth) / 2) - 120;
       $('#color-selector').css('left', posColorSelector);
       const posSubmitButton = ((vpWidth - gameBoardWidth) / 2) - 150;    
@@ -202,12 +256,17 @@ $(document).ready(function() {
       $('#color-selector').css('left', '50%');
       $('#color-selector').css('width', gameBoardWidth);
     }
-    if (vpWidth > 820) {
+    if (vpWidth > 840) {
       const vpHeight = $(window).height();
       $('.rules-wrapper').css('height', vpHeight - 220);
     } else {
       const vpHeight = $(window).height();
       $('.rules-wrapper').css('height', vpHeight - 150);
+    }
+    if (vpWidth <= 840 && vpWidth > 500) {    
+      $('#timer').css('right', (vpWidth - gameBoardWidth) / 2);
+    } else {
+      $('#timer').css('right', 20);
     }
   }
 

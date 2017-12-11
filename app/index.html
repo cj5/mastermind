@@ -32,7 +32,7 @@
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
 
-    <link href="https://fonts.googleapis.com/css?family=Josefin Sans:400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin Sans:400,600|Lato" rel="stylesheet">
 
   </head>
   <body>
@@ -55,6 +55,10 @@
           <div class="winner-wrapper">
             <img src="images/kip-yuss.png">
             <h2>You win!</h2>
+            <div class="user-time">
+              <h3>Your time was:</h3>              
+              <p class="time"></p>
+            </div>              
             <div id="new-game">
               <p>New Game</p>
             </div>
@@ -67,6 +71,7 @@
           <div class="loser-wrapper">
             <img src="images/courtney-ma-ha.png">
             <h2>You lose</h2>
+            <p class="out-of-time"></p>
             <div id="new-game">
               <p>New Game</p>
             </div>
@@ -85,18 +90,28 @@
             <div class="text-wrapper">
               <!-- <p><span class="disclaimer">* This game is still in development and has a few bugs</span></p> -->
               
-              <p>You are the codebreaker and your objective is to guess the randomly generated pattern, in both order and color, within ten turns. Start by selecting one of the six colored code pegs from the panel. Fill the first row of four positions with a guess and a submit button will appear. Once you submit your guess, the game provides feedback by placing from zero to four key pegs in the small holes of the row with the guess. A black key peg is placed for each code peg from the guess which is correct in both color and position. A white key peg indicates the existence of a correct color code peg placed in the wrong position.</p>
+              <p>You are the codebreaker and your objective is to guess the randomly generated pattern, in both order and color, within ten turns or five minutes. Start by selecting one of the six colored code pegs from the panel. Fill the first row of four positions with a guess and a submit button will appear. Once you submit your guess, the game provides feedback by placing from zero to four key pegs in the small holes of the row with the guess. A black key peg is placed for each code peg from the guess which is correct in both color and position. A white key peg indicates the existence of a correct color code peg placed in the wrong position.</p>
               <p>If there are duplicate colors in the guess, they cannot all be awarded a key peg unless they correspond to the same number of duplicate colors in the hidden code. For example, if the hidden code is green-green-blue-blue and you guess green-green-green-blue, the game will award two black key pegs for the two correct greens, nothing for the third green as there is not a third green in the code, and a black key peg for the blue. No indication is given of the fact that the code also includes a second blue.</p>
               <p>Once feedback is provided, another guess is made; guesses and feedback continue to alternate until either you guess correctly, or ten incorrect guesses are made.</p>
             </div>
           </div>
       </div>
-    </div>
+    </div>    
+
+    <div id="timer">
+      <h4 class="desktop">Timer</h4>
+      <p id="time" class="time">0.0 s</p>      
+    </div>   
 
     <div id="main-wrapper">
       <h1 class="title desktop">Mastermind</h1>
-      <div class="container">        
-        <div id="gameboard">  
+      <div class="container">                
+        <div id="gameboard">
+          <div class="start-timer-wrapper">  
+            <div class="start-timer">
+              <p>Start</p>
+            </div>
+          </div>
           <div id="rules-btn" class="desktop">
             <p>Rules</p>
           </div>    
@@ -129,16 +144,16 @@
                   <p>Rules</p>
                 </div>
                 <div id="reset-btn">
-                  <p>Reset</p>
+                  <p>Reset</p>                  
                 </div>                         
                 <div id="submit" class="submit">
                   <p>Submit</p>
-                </div>
+                </div>                
               </div>
             </div>            
           </div>
           <!-- end mobile options section -->
-          <div id="row-1" class="row active">
+          <div id="row-1" class="row">
             <div class="row-label">
               <p>1</p>
             </div>
