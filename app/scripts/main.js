@@ -28,10 +28,12 @@ $(document).ready(function() {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // GAME BOARD POSITIONING
   const gameBoardWidth = $('#gameboard').outerWidth();
-  const posColorSelector = ((vpWidth - gameBoardWidth) / 2) - 120;
-  $('#color-selector').css('left', posColorSelector);
-  const posSubmitButton = ((vpWidth - gameBoardWidth) / 2) - 150;
-  $('#submit').css('right', posSubmitButton);  
+  if (vpWidth > 820) {
+    const posColorSelector = ((vpWidth - gameBoardWidth) / 2) - 120;
+    $('#color-selector').css('left', posColorSelector);
+    const posSubmitButton = ((vpWidth - gameBoardWidth) / 2) - 150;
+    $('#submit').css('right', posSubmitButton);
+  }    
   $('.rules-wrapper').css('height', vpHeight - 220);
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -182,10 +184,17 @@ $(document).ready(function() {
     $('body').css('overflow-y', 'visible');
 
     const gameBoardWidth = $('#gameboard').outerWidth();
-    const posColorSelector = ((vpWidth - gameBoardWidth) / 2) - 120;
-    $('#color-selector').css('left', posColorSelector);
-    const posSubmitButton = ((vpWidth - gameBoardWidth) / 2) - 150;    
-    $('#submit').css('right', posSubmitButton);
+    console.log('vpWidth: ', vpWidth);
+    if (vpWidth > 820) {
+      const posColorSelector = ((vpWidth - gameBoardWidth) / 2) - 120;
+      $('#color-selector').css('left', posColorSelector);
+      const posSubmitButton = ((vpWidth - gameBoardWidth) / 2) - 150;    
+      $('#submit').css('right', posSubmitButton);
+      $('#color-selector').css('width', 'auto');
+    } else {
+      $('#color-selector').css('left', '50%');
+      $('#color-selector').css('width', gameBoardWidth);
+    }
     const vpHeight = $(window).height();
     $('.rules-wrapper').css('height', vpHeight - 220);
   }

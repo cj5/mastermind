@@ -94,29 +94,58 @@
     </div>
 
     <div id="main-wrapper">
-      <h1 class="title">Mastermind</h1>
+      <h1 class="title desktop">Mastermind</h1>
       <div class="container">
         <!-- <h1 class="title">Mastermind</h1> -->
-        <div id="gameboard">
-          <div class="rules-reset-wrapper">  
-            <div id="rules-btn">
-              <p>Rules</p>
-            </div>            
-          </div>
-          <div id="color-selector">
+        <div id="gameboard">  
+          <div id="rules-btn" class="desktop">
+            <p>Rules</p>
+          </div>    
+          <div id="color-selector" class="desktop">
             <div class="cdBkr-spot selected color-1"></div>
             <div class="cdBkr-spot color-2"></div>
             <div class="cdBkr-spot color-3"></div>
             <div class="cdBkr-spot color-4"></div>
             <div class="cdBkr-spot color-5"></div>
             <div class="cdBkr-spot color-6"></div>
-            <div id="reset-btn">
-              <p>Reset</p>
+            <!-- <div class="mobile-buttons-wrapper">   -->
+              <!-- <div id="rules-btn" class="mobile">
+                <p>Rules</p>
+              </div> -->
+              <div id="reset-btn" class="desktop">
+                <p>Reset</p>
+              </div>
+            <!-- </div> -->         
+            <div id="submit" class="desktop">
+              <p>Submit</p>
             </div>
-          </div>         
-          <div id="submit">
-            <p>Submit</p>
-          </div>       
+          </div>
+          <!-- mobile options section -->
+          <div class="options mobile">
+            <h1 class="title">mobile Mastermind</h1>
+            <div class="container">
+              <div id="color-selector">
+                <div class="cdBkr-spot selected color-1"></div>
+                <div class="cdBkr-spot color-2"></div>
+                <div class="cdBkr-spot color-3"></div>
+                <div class="cdBkr-spot color-4"></div>
+                <div class="cdBkr-spot color-5"></div>
+                <div class="cdBkr-spot color-6"></div>
+                <!-- <div class="mobile-buttons-wrapper">   -->
+                  <div id="rules-btn" class="mobile">
+                    <p>Rules</p>
+                  </div>
+                  <div id="reset-btn">
+                    <p>Reset</p>
+                  </div>
+                <!-- </div> -->         
+                <div id="submit">
+                  <p>Submit</p>
+                </div>
+              </div>
+            </div>            
+          </div>
+          <!-- end mobile options section -->
           <div id="row-1" class="row active">
             <div class="row-label">
               <p>1</p>
@@ -459,6 +488,14 @@
 
         </div>
       </div>
+
+      <!-- <div class="mobile-coming">
+        <h2>Mastermind</h2>
+        <div class="wrapper">          
+          <h3>Mobile version to come</h3>
+        </div>
+      </div> -->
+
     </div>
     
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

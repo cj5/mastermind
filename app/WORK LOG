@@ -24,6 +24,8 @@ WORK LOG
 
 11. Add keyboard controls
 
-12. REFACTOR!!!
+✔ 12. REFACTOR!!!
 
-13. Add difficulty settings -> hard = 8 rows, easy = 12 rows
+13. Add difficulty settings -> hard = 8 rows, easy = 12 rows, etc.
+
+14. Track users' high scores (cookies? login?)
