@@ -487,7 +487,7 @@ body .desktop {
     right: initial;
     left: 50%;
     transform: translateX(-50%);
-    top: 75px;
+    top: 72px;
   }
   #rules-btn {
     top: -44px;
@@ -601,5 +601,8 @@ body .desktop {
   #rules .rules-wrapper .text-wrapper p {
     font-size: 16px;
     line-height: 20px;
+  }
+  #rules .rules-title h3 {
+    font-size: 16px;
   }
 }
