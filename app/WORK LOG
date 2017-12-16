@@ -2,15 +2,15 @@
 WORK LOG
 ---------------
 
-✔ 1. randomly generate a code to break
+✔ 1. Randomly generate a code to break
 
-✔ 2. only show submit button when all 4 spots have a guess
+✔ 2. Only show submit button when all 4 spots have a guess
 
-✔ 3. be able to submit a guess on active row
+✔ 3. Be able to submit a guess on active row
 
-✔ 4. click submit -> return codemaker peg hints based on submitted guess
+✔ 4. Click submit -> return codemaker peg hints based on submitted guess
 
-✔ 5. click submit -> move active class to next row
+✔ 5. Click submit -> move active class to next row
  
 ✔ 6. When peg hints are all black, game over -> show winner msg/new game
 
@@ -20,12 +20,24 @@ WORK LOG
 
 ✔ 9. Number the rows
 
-10. Make responsive
+✔ 10. Make responsive
 
 11. Add keyboard controls
 
-✔ 12. REFACTOR!!!
+✔ 12. REFACTOR!!! (for loops in place of excessive if statements)
 
 13. Add difficulty settings -> hard = 8 rows, easy = 12 rows, etc.
 
-14. Track users' high scores (cookies? login?)
+✔ 14. Add stopwatch — min:sec.msec
+
+✔ 15. Stop the stopwatch when user wins or loses. 
+
+✔ 16. Show completion time to user when they win
+
+✔ 17. Track users' high scores — localStorage
+
+✔ 18. Display users' all time top 5 scores
+
+19. Display top 5 high scores of all users
+
+20. Combine 18 & 19 lists into one, sorted list combining personal high scores with all users' high scores

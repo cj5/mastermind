@@ -91,14 +91,13 @@ $(document).ready(function() {
   guessIfActive();
 
   // Timer stuff ~~~~~~~~~~~~
-  let time = $('#time')[0];
-  let start = document.getElementsByClassName('start-timer p');
+  let time = $('#time')[0];  
   let ms = 0;
   let s = 0;
   let m = 0;
   const timeLimit_mins = 5;
 
-  function timeUp() {
+  const timeCount = () => {
     ms++;
     if (ms >= 10) {
       ms = 0;
@@ -110,36 +109,68 @@ $(document).ready(function() {
           $('#loser').css('left', 0);
         }
       }
-    }
-    
-    time.textContent = 
+    }    
+    time.textContent =
     (m != 0 ? m + ':' : '') + // display minutes
     (m != 0 ? (s > 9 ? s : '0' + s) : s) + '.' + // display seconds
     (ms ? (ms > 9 ? ms : '' + ms) : '0') + // display milliseconds
-    (m != 0 ? ' m' : ' s'); // display units of time
+    (m != 0 ? '' : ' s'); // display units of time
 
     timer();
   }
-  function timer() {    
-    if ($('#winner').css('left') === '0px' || $('#loser').css('left') === '0px') {      
-      const userTime = time.textContent;
-      console.log('userTime: ', userTime);
+  
+  let retrievedScores = localStorage.getItem('high scores');
+  let scores2 = retrievedScores;
+
+  let scores = [];
+  if (localStorage.length != 0) {
+    scores2.toString();
+    scores.unshift(scores2);
+  }  
+  let scoresArray = scores.toString().split(',');  
+  let secArray = scoresArray.filter(sec => sec.includes('s'));
+  secArray = secArray.sort();  
+  let minsArray = scoresArray.filter(sec => sec.includes(':'));
+  minsArray = minsArray.sort();  
+  scoresArray = secArray.concat(minsArray);  
+  $('.score-1').html(scoresArray[0]);
+  $('.score-2').html(scoresArray[1]);
+  $('.score-3').html(scoresArray[2]);
+  $('.score-4').html(scoresArray[3]);
+  $('.score-5').html(scoresArray[4]);  
+
+  const timer = () => {
+    if ($('#winner').css('left') === '0px' || $('#loser').css('left') === '0px') {
+      let userTime = time.textContent;
       $('.user-time p').html(userTime);
       $('.out-of-time').html('You ran out of time');
-      return;                     
+
+      let retrievedScores = localStorage.getItem('high scores');
+      let scores2 = retrievedScores;
+
+      let scores = [];
+      if (localStorage.length != 0) {
+        scores2.toString();
+        scores.unshift(scores2);
+      }
+      scores.push(userTime);
+      let scoresArray = scores.toString().split(',');
+      localStorage.setItem('high scores', scoresArray);
+
+      return;
     } else {
-      setTimeout(timeUp, 100);
+      setTimeout(timeCount, 100);
     }
   }
-
   $('.start-timer p').click(function() {
     timer();
     $('#row-1').addClass('active');
     guessIfActive();
     $('.start-timer-wrapper').hide();
   });
+  // END Timer stuff ~~~~~~~~~~~~~~
 
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Click submit button ~~~~~~~~~~~~~~~
   let guessArray = [];
   let gradeArray = [0,0,0,0];
 
@@ -248,8 +279,7 @@ $(document).ready(function() {
     
     $('body').css('overflow-y', 'visible');
 
-    const gameBoardWidth = $('#gameboard').outerWidth();
-    console.log('vpWidth: ', vpWidth);
+    const gameBoardWidth = $('#gameboard').outerWidth();    
     if (vpWidth > 840) {
       const posColorSelector = ((vpWidth - gameBoardWidth) / 2) - 120;
       $('#color-selector').css('left', posColorSelector);
