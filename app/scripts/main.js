@@ -126,18 +126,18 @@ $(document).ready(function() {
   if (localStorage.length != 0) {
     scores2.toString();
     scores.unshift(scores2);
-  }  
-  let scoresArray = scores.toString().split(',');  
-  let secArray = scoresArray.filter(sec => sec.includes('s'));
-  secArray = secArray.sort();  
-  let minsArray = scoresArray.filter(sec => sec.includes(':'));
-  minsArray = minsArray.sort();  
-  scoresArray = secArray.concat(minsArray);  
+  }
+  let scoresArray = scores.toString().split(',');
+  let secArray = scoresArray.filter(x => x.includes('s'));
+  secArray = secArray.sort();
+  let minsArray = scoresArray.filter(x => x.includes(':'));
+  minsArray = minsArray.sort();
+  scoresArray = secArray.concat(minsArray);
   $('.score-1').html(scoresArray[0]);
   $('.score-2').html(scoresArray[1]);
   $('.score-3').html(scoresArray[2]);
   $('.score-4').html(scoresArray[3]);
-  $('.score-5').html(scoresArray[4]);  
+  $('.score-5').html(scoresArray[4]);
 
   const timer = () => {
     if ($('#winner').css('left') === '0px' || $('#loser').css('left') === '0px') {
