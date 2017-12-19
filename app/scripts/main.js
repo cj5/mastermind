@@ -76,8 +76,7 @@ $(document).ready(function() {
     && $('.row.active .cdBkr-spot-2').hasClass('guess-made')
     && $('.row.active .cdBkr-spot-3').hasClass('guess-made')
     && $('.row.active .cdBkr-spot-4').hasClass('guess-made')) {      
-      $('.submit').addClass('show');
-      // $('.options #submit').addClass('show');
+      $('.submit').addClass('show');      
     }
   }
 
@@ -95,7 +94,7 @@ $(document).ready(function() {
   let ms = 0;
   let s = 0;
   let m = 0;
-  const timeLimit_mins = 5;
+  const timeLimit_mins = 3;
 
   const timeCount = () => {
     ms++;
@@ -107,6 +106,7 @@ $(document).ready(function() {
         m++;
         if (m >= timeLimit_mins) {
           $('#loser').css('left', 0);
+          $('.out-of-time').html('You ran out of time');
         }
       }
     }    
@@ -120,12 +120,11 @@ $(document).ready(function() {
   }
   
   let retrievedScores = localStorage.getItem('high scores');
-  let scores2 = retrievedScores;
 
   let scores = [];
   if (localStorage.length != 0) {
-    scores2.toString();
-    scores.unshift(scores2);
+    retrievedScores.toString();
+    scores.unshift(retrievedScores);
   }
   let scoresArray = scores.toString().split(',');
   let secArray = scoresArray.filter(x => x.includes('s'));
@@ -140,18 +139,16 @@ $(document).ready(function() {
   $('.score-5').html(scoresArray[4]);
 
   const timer = () => {
-    if ($('#winner').css('left') === '0px' || $('#loser').css('left') === '0px') {
+    if ($('#winner').css('left') === '0px') {
       let userTime = time.textContent;
       $('.user-time p').html(userTime);
-      $('.out-of-time').html('You ran out of time');
 
-      let retrievedScores = localStorage.getItem('high scores');
-      let scores2 = retrievedScores;
+      let retrievedScores = localStorage.getItem('high scores');      
 
       let scores = [];
       if (localStorage.length != 0) {
-        scores2.toString();
-        scores.unshift(scores2);
+        retrievedScores.toString();
+        scores.unshift(retrievedScores);
       }
       scores.push(userTime);
       let scoresArray = scores.toString().split(',');
