@@ -60,7 +60,8 @@ $(document).ready(function() {
     return codeArray;
   }
   let codeArray = makeCode();
-  // let codeArray = [0,0,0,0];  
+  // let codeArray = [0,0,0,0];
+  console.log(codeArray);
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   $('#color-selector .cdBkr-spot').click(function() {
@@ -84,7 +85,7 @@ $(document).ready(function() {
     $('.row.active .cdBkr-spot').click(function() {      
       $(this).css('background-color', bgColor);      
       $(this).addClass('guess-made');      
-      showSubmit();   
+      showSubmit();
     });
   }
   guessIfActive();
@@ -184,7 +185,7 @@ $(document).ready(function() {
           guessArray.push(j);
         }
       }
-    }    
+    }
     
     // saves original version of codeArray to revert back to
     let saveCodeArray = codeArray.slice();
